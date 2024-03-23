@@ -39,7 +39,6 @@
   };
 
   let newGame = function (w) {
-    console.log("Recognized");
     if (gameState !== GAME_STATES.GAME_IN_PROGRESS) {
       if (checkWord(w)) {
         word = w.toUpperCase();
@@ -101,7 +100,8 @@
       message = MESSAGES.NO_GAME;
       return;
     }
-
+    console.log("Word: ", word);
+    console.log("Letter", letter);
     message = "Processed letter '" + letter + "'.";
     if (word.indexOf(letter) >= 0) {
       for (let i = 0; i < word.length; i++) {

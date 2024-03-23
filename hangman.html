@@ -15,6 +15,17 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+    <style>
+      #letter-space {
+        background-color: lightgray;
+      }
+      input[type="radio"] {
+        transform: scale(1.5);
+      }
+      #remainingGuessCount {
+        font-size: 48px;
+      }
+    </style>
     <!-- <script src="./GameController.js"></script> -->
     <script src="./Assets/Libraries/GameController.js"></script>
     <script type="module" src="./hangman.js"></script>
@@ -23,32 +34,295 @@
   <body>
     <header class="container">
       <div class="row">
-        <div class="col"><h1>Hangman JS</h1></div>
+        <div class="col text-center"><h1>Hangman JS</h1></div>
       </div>
     </header>
     <main>
       <div class="container">
-        <div class="row">
-          <div class="col">
+        <div class="row mt-5">
+          <div class="col-auto">
             <button
               type="button"
-              class="btn btn-success"
+              class="btn btn-info border-dark btn-lg"
               id="displayCategoriesBtn"
             >
               Display Game Categories
             </button>
           </div>
-        </div>
-        <div class="row">
-          <div class="col category-selection-area"></div>
-        </div>
-        <!-- <div class="row">
-          <div class="col">
-            <button type="button" class="btn btn-success" id="okBtn">
-              Select Category
+          <div class="col-auto">
+            <button
+              type="button"
+              class="btn btn-info border-dark btn-lg d-none"
+              id="newGameBtn"
+            >
+              New Game
             </button>
           </div>
-        </div> -->
+        </div>
+        <div class="row mt-5">
+          <div class="col category-selection-area"></div>
+        </div>
+        <!-- Hangman Graphic -->
+        <div class="row">
+          <div class="col"></div>
+        </div>
+        <!-- Word Spaces -->
+        <div class="container">
+          <div class="row mt-5" id="word-spaces"></div>
+          <div class="row">
+            <div class="col text-center mt-5" id="remainingGuessCount"></div>
+          </div>
+        </div>
+        <!-- Letter Choices -->
+        <div class="letter-choices mt-5">
+          <div class="row text-center">
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="a"
+              >
+                a
+              </button>
+            </div>
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="b"
+              >
+                b
+              </button>
+            </div>
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="c"
+              >
+                c
+              </button>
+            </div>
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="d"
+              >
+                d
+              </button>
+            </div>
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="e"
+              >
+                e
+              </button>
+            </div>
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="f"
+              >
+                f
+              </button>
+            </div>
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="g"
+              >
+                g
+              </button>
+            </div>
+          </div>
+          <div class="row text-center mt-3">
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="h"
+              >
+                h
+              </button>
+            </div>
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="i"
+              >
+                i
+              </button>
+            </div>
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="j"
+              >
+                j
+              </button>
+            </div>
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="k"
+              >
+                k
+              </button>
+            </div>
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="l"
+              >
+                l
+              </button>
+            </div>
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="m"
+              >
+                m
+              </button>
+            </div>
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="n"
+              >
+                n
+              </button>
+            </div>
+          </div>
+          <div class="row text-center mt-3">
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="o"
+              >
+                o
+              </button>
+            </div>
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="p"
+              >
+                p
+              </button>
+            </div>
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="q"
+              >
+                q
+              </button>
+            </div>
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="r"
+              >
+                r
+              </button>
+            </div>
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="s"
+              >
+                s
+              </button>
+            </div>
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="t"
+              >
+                t
+              </button>
+            </div>
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="u"
+              >
+                u
+              </button>
+            </div>
+          </div>
+          <div class="row text-center mt-3">
+            <div class="col-auto letter card-body"></div>
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="v"
+              >
+                v
+              </button>
+            </div>
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="w"
+              >
+                w
+              </button>
+            </div>
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="x"
+              >
+                x
+              </button>
+            </div>
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="y"
+              >
+                y
+              </button>
+            </div>
+            <div class="col-auto letter card-body">
+              <button
+                type="button"
+                class="btn btn-info btn-lg w-100 border-dark"
+                data-character="z"
+              >
+                z
+              </button>
+            </div>
+            <div class="col-auto letter card-body"></div>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col text-center" id="resultsSection"></div>
+        </div>
       </div>
     </main>
     <footer>
