@@ -4,6 +4,64 @@ let globalReferences = {
   hangman: null,
   lexicon: null,
   guessesRemaining: null,
+  HANGMANASCII: [
+    `
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========`,
+    `
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========`,
+    `
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========`,
+    `
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========`,
+    `
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========`,
+    `
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========`,
+    `
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========`,
+  ],
 };
 
 window.onload = function () {
@@ -43,8 +101,6 @@ function FetchVocabularyData() {
 function DisplayGameCategories(vocabularyData) {
   let JSONgameData = JSON.parse(vocabularyData);
   let gameData = JSONgameData.vocabularies;
-  // let categorySection = document.querySelector(".category-selection-area");
-
   let categorySectionHTML = "";
   for (let index = 0; index < gameData.length; index++) {
     categorySectionHTML += `<label for="${gameData[index].categoryName}">${gameData[index].categoryName}: </label>`;
@@ -97,6 +153,8 @@ function GatherWordOptions() {
   globalReferences.guessesRemainingCounter.innerText =
     globalReferences.guessesRemaining;
 
+  ManageHangmanGraphic();
+
   // Display the 'New Game' button
   globalReferences.newGameButton = document.querySelector("#newGameBtn");
   globalReferences.newGameButton.addEventListener("click", NewGame);
@@ -128,7 +186,6 @@ function CaptureLetterSelection(e) {
     console.log(e.key);
     console.log(globalReferences.letterButtons);
     for (let i = 0; i < globalReferences.letterButtons.length; i++) {
-      // console.log(globalReferences.letterButtons[i].dataset.character);
       if (globalReferences.letterButtons[i].dataset.character === e.key) {
         globalReferences.letterButtons[i].classList.add("disabled");
         console.log(e.key);
@@ -152,6 +209,12 @@ function CaptureLetterSelection(e) {
   }
 }
 
+function ManageHangmanGraphic() {
+  let hangmanContainer = document.querySelector("#hangmanGraphic");
+  let counter = GameController.report().guessesRemaining;
+  hangmanContainer.innerText = globalReferences.HANGMANASCII[6 - counter];
+}
+
 function DisplayCharacter(character) {
   globalReferences.displayTiles = document.querySelectorAll("#letter-space h3");
   console.log(globalReferences.displayTiles);
@@ -162,6 +225,8 @@ function DisplayCharacter(character) {
     ) {
       // console.log("We have a match!!");
       globalReferences.displayTiles[i].classList.remove("d-none");
+    } else {
+      ManageHangmanGraphic();
     }
   }
 
@@ -189,5 +254,11 @@ function NewGame() {
   console.log("Hello");
   globalReferences.newGameButton.classList.add("d-none");
   globalReferences.newGameButton.classList.add("disabled");
-  DisplayGameCategories(globalReferences.hangmanData);
+  globalReferences.categorySection.classList.remove("d-none");
+  globalReferences.wordSpaceRow.innerHTML = "";
+  globalReferences.resultSection.innerHTML = "";
+  globalReferences.guessesRemainingCounter.classList.add("d-none");
+  for (let i = 0; i < globalReferences.letterButtons.length; i++) {
+    globalReferences.letterButtons[i].classList.remove("disabled");
+  }
 }
