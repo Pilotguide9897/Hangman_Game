@@ -212,7 +212,7 @@ function CaptureLetterSelection(e) {
 function ManageHangmanGraphic() {
   let hangmanContainer = document.querySelector("#hangmanGraphic");
   let counter = GameController.report().guessesRemaining;
-  hangmanContainer.innerText = globalReferences.HANGMANASCII[6 - counter];
+  hangmanContainer.innerhtml = globalReferences.HANGMANASCII[6 - counter];
 }
 
 function DisplayCharacter(character) {
