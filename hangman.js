@@ -86,6 +86,7 @@ function GatherWordOptions() {
   let word = GetSingleWord(globalReferences.lexicon);
   GameController.newGame(word);
   console.log(GameController.report());
+
   globalReferences.guessesRemaining = GameController.report().guessesRemaining;
   console.log(globalReferences.guessesRemaining);
   globalReferences.categorySection.classList.add("d-none");
@@ -198,9 +199,9 @@ function DisplayResult() {
     globalReferences.letterButtons[i].classList.add("disabled");
   }
   if (GameController.report().gameState === "GAME_OVER_LOSE") {
-    globalReferences.resultSection.innerHTML = `<img src="./Assets/Images/defeat.gif" alt="Defeat" />`;
+    globalReferences.resultSection.innerHTML = `Lose :( <br /> <img src="./Assets/Images/defeat.gif" alt="Defeat" />`;
   } else {
-    globalReferences.resultSection.innerHTML = `<img src="./Assets/Images/victory.gif" alt="Victory" />`;
+    globalReferences.resultSection.innerHTML = `Win! <br /><img src="./Assets/Images/victory.gif" alt="Victory" />`;
   }
 }
 
