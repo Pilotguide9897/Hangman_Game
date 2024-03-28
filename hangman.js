@@ -5,62 +5,13 @@ let globalReferences = {
   lexicon: null,
   guessesRemaining: null,
   HANGMANASCII: [
-    `
-  +---+
-  |   |
-      |
-      |
-      |
-      |
-=========`,
-    `
-  +---+
-  |   |
-  O   |
-      |
-      |
-      |
-=========`,
-    `
-  +---+
-  |   |
-  O   |
-  |   |
-      |
-      |
-=========`,
-    `
-  +---+
-  |   |
-  O   |
- /|   |
-      |
-      |
-=========`,
-    `
-  +---+
-  |   |
-  O   |
- /|\  |
-      |
-      |
-=========`,
-    `
-  +---+
-  |   |
-  O   |
- /|\  |
- /    |
-      |
-=========`,
-    `
-  +---+
-  |   |
-  O   |
- /|\  |
- / \  |
-      |
-=========`,
+    "<img src ='Images/HangmanAscii1.png' />",
+    "<img src = 'Images/HangmanAscii2.png' />",
+    "<img src = 'Images/HangmanAscii3.png' />",
+    "<img src = 'Images/HangmanAscii4.png' />",
+    "<img src = 'Images/HangmanAscii5.png' />",
+    "<img src = 'Images/HangmanAscii6.png' />",
+    "<img src = 'Images/HangmanAscii7.png' />",
   ],
 };
 
@@ -212,7 +163,7 @@ function CaptureLetterSelection(e) {
 function ManageHangmanGraphic() {
   let hangmanContainer = document.querySelector("#hangmanGraphic");
   let counter = GameController.report().guessesRemaining;
-  hangmanContainer.innerhtml = globalReferences.HANGMANASCII[6 - counter];
+  hangmanContainer.innerHTML = globalReferences.HANGMANASCII[6 - counter];
 }
 
 function DisplayCharacter(character) {
@@ -243,6 +194,9 @@ function DisplayCharacter(character) {
 function DisplayResult() {
   globalReferences.resultSection = document.querySelector("#resultsSection");
   globalReferences.newGameButton.classList.remove("disabled");
+  for (let i = 0; i < globalReferences.letterButtons.length; i++) {
+    globalReferences.letterButtons[i].classList.add("disabled");
+  }
   if (GameController.report().gameState === "GAME_OVER_LOSE") {
     globalReferences.resultSection.innerHTML = `<img src="./Assets/Images/defeat.gif" alt="Defeat" />`;
   } else {
@@ -257,6 +211,7 @@ function NewGame() {
   globalReferences.categorySection.classList.remove("d-none");
   globalReferences.wordSpaceRow.innerHTML = "";
   globalReferences.resultSection.innerHTML = "";
+  document.querySelector("#hangmanGraphic").innerHTML = "";
   globalReferences.guessesRemainingCounter.classList.add("d-none");
   for (let i = 0; i < globalReferences.letterButtons.length; i++) {
     globalReferences.letterButtons[i].classList.remove("disabled");
