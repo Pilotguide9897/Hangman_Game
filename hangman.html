@@ -16,6 +16,9 @@
       crossorigin="anonymous"
     />
     <style>
+      body {
+        background-color: #f6f6f6;
+      }
       #letter-space {
         background-color: lightgray;
       }
@@ -24,6 +27,17 @@
       }
       #remainingGuessCount {
         font-size: 48px;
+      }
+      #resultsSection {
+        font-size: 2rem;
+        font-weight: bold;
+      }
+
+      .container {
+        border: solid thick gray;
+      }
+      .disabled {
+        cursor: not-allowed;
       }
     </style>
     <!-- <script src="./GameController.js"></script> -->
@@ -64,7 +78,7 @@
         </div>
         <!-- Hangman Graphic -->
         <div class="row">
-          <div class="col"></div>
+          <div class="col text-center" id="hangmanGraphic"></div>
         </div>
         <!-- Word Spaces -->
         <div class="container">
