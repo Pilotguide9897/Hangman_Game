@@ -141,11 +141,12 @@ function CaptureLetterSelection(e) {
   } else {
     // I cannot figure out why the disabled class is not applied until the second time that a button is clicked on. I have tried for hours and I cannot find a solution. I do not know the cause or the solution.
     if (!e.target.classList.contains("disabled")) {
-      e.target.classList.add("disabled");
       GameController.processLetter(e.target.innerText.toUpperCase());
       globalReferences.guessesRemainingCounter.innerText =
         GameController.report().guessesRemaining;
       DisplayCharacter(e.target.innerText);
+      e.target.classList.add("disabled");
+      e.target.parentElement.classList.add("disabled");
     }
   }
 }
